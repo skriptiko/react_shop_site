@@ -1,0 +1,114 @@
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.home-container {
+	position: relative;
+	height: 100%;
+    width: 100%;
+	background-color: transparent;
+	overflow: hidden;
+    z-index: 2;
+}
+
+.home {
+	position: absolute;
+	height: 250%;
+    width: 250%;
+    top: -75%;
+    left: -75%;
+    background: url(../../img/nightSkyBackground.png);
+    background-size: 30%;
+	background-color: #000;
+	animation: starRotationOn 360s linear infinite;
+    z-index: 1;
+}
+
+.stars-container {
+	position: relative;
+    height: 28vw;
+    width: 28vw;
+	background-color: transparent;
+    animation: starRotation 60s linear infinite;
+    z-index: 5;    
+}
+
+
+
+.stars {
+	height: 28vw;
+	width: 28vw;
+	border-radius: 50%;
+	border: 1px solid #fff;
+	background: url(../../img/63604183233815268326696152.png) no-repeat center;
+	background-size: 100%;
+	background-color: #000;
+	animation: starRotation 60s linear infinite;
+	z-index: 4;
+}
+
+.sun {
+	position: absolute;
+    height: 100px;
+    width: 100px;
+    animation: starRotation 20s linear infinite;
+	left: 0;
+    top: 0;
+	margin-top: -100px;
+    margin-left: -100px;
+    background: url(../../img/sun.png) center center no-repeat;
+    background-size: 75%;
+	z-index: 6;
+}
+
+.moon {
+	position: absolute;
+    height: 100px;
+    width: 100px;
+    animation: starRotation 20s linear infinite;
+	left: 100%;
+    top: 100%;
+  
+    background: url(../../img/moon.png) center center no-repeat;
+    background-size: 75%;
+}
+
+@media (max-width: 480px) { 
+	.stars-container {
+
+		height: 30vw;
+		width: 30vw;
+
+	}
+	.moon {
+		height: 50px;
+		width: 50px;
+
+	}
+	.sun {
+		height: 50px;
+		width: 50px;
+		margin-top: -50px;
+    	margin-left: -50px;
+	}	
+}
+
+@keyframes starRotationOn {
+    0% {
+        transform: rotate(0)
+    }
+    100% {
+        transform: rotate(-360deg)
+    }
+}
+
+@keyframes starRotation {
+    0% {
+        transform: rotate(0)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+}

@@ -1,0 +1,108 @@
+.app {
+	background-color: #2A2B30;
+	height: 100%;
+	width: 100%;
+}
+
+.nav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 63px;
+	background-color: transparent;
+	display: flex;
+	text-transform: uppercase;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 3;
+	padding: 5px 50px;
+	
+}
+
+.nav ul {
+	
+	display: flex;
+	text-transform: uppercase;
+	align-items: center;
+	justify-content: flex-start;
+	transform: translateX(150%);
+	transition: all 0.3s ease-in-out;
+	
+}
+
+.nav li {
+	list-style-type: none;
+}
+
+.nav li a {
+	text-decoration: none;
+	color: #fff;
+	margin: 0 5px;
+	opacity: .5;
+	
+}
+
+.nav li a:hover {
+	opacity: 1;	
+}
+
+
+.trigger {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  text-indent: 100%;
+  color: transparent;
+  white-space: nowrap;
+}
+
+.trigger span,
+.trigger span::before,
+.trigger span::after {
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.trigger span {
+  top: calc(50% - 2px);
+  left: calc(50% - 22px);
+  transition: transform 0.3s;
+}
+
+.trigger span::before,
+.trigger span::after {
+  content: "";
+  left: 0;
+  transition: transform 0.3s, width 0.3s;
+}
+
+.trigger span::before {
+  bottom: 8px;
+}
+
+.trigger span::after {
+  top: 8px;
+}
+
+.trigger.active span {
+  transform: rotate(180deg);
+}
+
+.trigger.active span::before {
+  transform: translate(-3px, 3px) rotate(-45deg);
+  width: 50%;
+}
+
+.trigger.active span::after {
+  transform: rotate(45deg);
+  transform: translate(-3px, -3px) rotate(45deg);
+  width: 50%;
+}
