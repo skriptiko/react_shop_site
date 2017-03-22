@@ -43,7 +43,7 @@ constructor() {
 					  <li><Link to="/">Home</Link></li>
 					  
 					  <li><Link to="/shop">Shop</Link></li>
-					  <li><Link to="/recipes">Admin</Link></li>
+					  <li><Link to="/admin">Admin</Link></li>
 					 
 					</ul>
 					

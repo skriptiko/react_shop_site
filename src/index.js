@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import Product from './components/Product';
-import Contact from './components/Contact';
+import Admin from './components/Admin';
 import Shop from './components/Shop';
 import Home from './components/Home';
-import Recipes from './components/Recipes';
+import Login from './components/Login';
 import * as firebase from 'firebase';
 
 var config = {
@@ -20,15 +19,16 @@ var config = {
 
 firebase.initializeApp(config);
 
+
 ReactDOM.render((
   <Router history={browserHistory}>
 	
 	<Route path="/" component={App}>
 		<IndexRoute component={Home} />
-      	<Route path="/product" component={Product}/>
+      	
       	<Route path="/shop" component={Shop}/>
-		<Route path="/recipes" component={Recipes}/>
-		<Route path="/contact" component={Contact}/>
+		<Route path="/login" component={Login}/>
+		<Route path="/admin" component={Admin}/>
     </Route>
 	
   </Router>

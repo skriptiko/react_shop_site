@@ -12,13 +12,17 @@
 }
 
 .compare-basket {
+	position: relative;
 	justify-content: space-between;
 	height: 70px;
 	width: 100%;
 	background-color: #212227;
+
+	padding: 5px 20px;
 }
 
 .basket-icon {
+	height: 100%;
 	margin: 0 20px;
 }
 
@@ -39,25 +43,35 @@
 }
 
 .product-in-box {
-	height: 55px;
+	transition: all .5s ease-in-out;
+	height: 60px;
 	width: 100%;
-	padding-left: 20px;
+	margin-left: 20px;
 	justify-content: flex-start;
 	flex-direction: row-reverse;
 }
 
 .product-in {
 	position: relative;
-	height: 55px;
-	width: 55px;
+	height: 60px;
+	width: 60px;
 	background-color: #42444F;
 	border-radius: 5px;
 	margin-left: 10px;
 }
 
+.product-in p {
+	position: absolute;
+	top: 3px;
+	left: 5px;
+	font-size: 12px;
+	color: #fff;
+	font-weight: 600;
+}
+
 .product-in-img {
-	height: 50px;
-	width: 50px;
+	max-height: 50px;
+	width: auto;
 	background: url(../../img/10.png) no-repeat center;
 	background-size: 100%;
 }
@@ -68,25 +82,29 @@
 	right: 4px;
 	font-size: 10px;
 	color: #fff;
-	z-index: 2;
+	z-index: 12;
 }
 
 .input-container { 
-	width: 100%;
-	height: 50px;
+	width: 0px;
+	height: 40px;
+	transition: all .5s ease-in-out;
+	border-radius: 5px;
+	
 }
 
 .search-input { 
-	height: 50px;
+	height: 40px;
 	width: 100%;
 	border: none;
 	background-color: #CECECE;
 	padding: 0 10px;
-	font-size: 25px;
+	font-size: 20px;
 	color: #2A2B30;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 	transition: all .5s linear;
+	border-radius: 5px;
 }
 
 .search-input:focus { 
@@ -120,10 +138,11 @@
 
 .product h3 {
 	color: #CECECE;
-	font-size: 20px;
+	font-size: 18px;
 	margin-top: 10px;
 	text-transform: uppercase;
 	min-height: 72px;
+	width: 180px;
 }
 
 .product-price {
@@ -153,38 +172,128 @@
 	margin-left: 10px;
 }
 
-.single-product-container {
+.card-product-container {
+
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	transform: translateX(-120%);
+	color: #CECECE;
+	z-index: 21;
+	transition: transform .6s linear;
+	margin-top: -63px;
+	background-color: rgba(255, 255, 255, .5);
+	overflow-y: auto;
+	
+}
+.card-product-box {
 	position: absolute;
-	top: 0;
-	left: -100%;
+	top: 63px;
+	left: 50%;
+	
+	width: 500px;
+	position: absolute;
+	margin-left: -250px;
+	background-color: #2A2B30;
+
+	border-radius: 5px;
+	padding: 50px;
+	margin-bottom: 63px;
+	
+
+}
+
+.card-product  {
+	position: relative;
+	display: flex;
+	padding: 20px;
+	background-color: #24252A;
+	border-radius: 5px;
+	border: 2px solid rgba(255, 255, 255, .2);
+	margin-top: 10px;
+	width: 396px;
+
+}
+
+.card-product:first-child  {
+	margin-top: 0;
+}
+
+.card-product-buy {
+
+	display: flex;
+	justify-content: space-between;
+	width: 396px;
+	align-items: center;
+	margin: 20px 0;
+	padding: 40px 0 0 0;
+	height: 50px;
+	border-top: 2px solid rgba(255, 255, 255, .2);
+}
+
+.card-product-buy a {
+
+	padding: 10px 15px;
+	border: 2px solid rgba(255, 255, 255, .2);
+	border-radius: 5px;
+	text-decoration: none;
+	color: rgba(255, 255, 255, .6);
+}
+
+.shop-btn {
+	cursor: pointer;
+}
+
+.card-product  div {
+	margin-left: 50px;
+
+}
+
+.card-product-off {
+	position: absolute;
+	top: 6px;
+	right: 10px;
+	color: rgba(255, 255, 255, .5);
+}
+
+
+.card-product img {
+	max-height: 94px;
+	width: auto;
+	margin: 0 20px;
+}
+
+
+.card-product-title {
+	max-width: 200px;
+	height: 45px;
+}
+
+.card-product-sum {
+	margin-top: 5px;
+}
+
+.single-product-container {
+	position: fixed;
+	transform: translateX(-120%);
 	color: #CECECE;
 	height: 100vh;
 	width: 100vw;
-	z-index: 2;
-	transition: all .6s linear;
+	z-index: 12;
+	transition: transform .6s linear;
+	margin-top: -63px;
+	background-color: rgba(255, 255, 255, .5);
 }
 
-.single-product-bgc {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100vh;
-	width: 100vw;
-	background-color: #CECECE;
-	opacity: .5;
-	z-index: 3;
-	
-}
 
 .single-product-c {
 
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-top: -150px;
+	margin-top: -170px;
 	margin-left: -300px;
-
-	z-index: 4;
+	z-index: 14;
 }
 
 .single-product {
@@ -193,6 +302,7 @@
 	border-radius: 10px; 
 	padding: 15px;
 	width: 600px;
+	height: 340px;
 	background-color: #24252A;
 	
 }
