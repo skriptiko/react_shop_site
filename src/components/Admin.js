@@ -1,43 +1,79 @@
 import React, { Component } from 'react';
 import './Admin.css';
-import * as firebase from 'firebase';
-import { browserHistory } from 'react-router';
+import LoginForm from './LoginForm';
+import AdminPanel from './AdminPanel';
 
-
-firebase.auth().onAuthStateChanged(user => {
-				if(user) {
-					if(location.pathname === "/login") {
-						browserHistory.push('/admin');
-					}	
-
-				} else { 
-					
-					if(location.pathname === "/admin") {
-						browserHistory.push('/login');
-					}
-					
-				}
-});
 
 class Admin extends Component {
 	
+	constructor() {
+		super();
+			this.state = { 
+				loggedIn: true,
+				usernameValue: "",
+				usernamePass: ""
+			}
+				
+	}
 	
+	usernameValueChange = (e) => {
+   
+		this.setState({
+			usernameValue: e.target.value
+			});
+			
+    
+  	}
+  	
+  	usernamePassChange = (e) => {
+   
+		this.setState({
+			usernamePass: e.target.value
+			});
+			
+    
+  	}
 	
+
 	
-	signOut = (e) => {
-	e.preventDefault();
+	changeValue = (value)  => {
+		console.log(value);
+		this.setState({
+			loggedIn: value
+			});
+	}
 	
-		firebase.auth().signOut();
+	changeValueOut = (value) => {
+		
+		this.setState({
+			loggedIn: value
+			});
 	}
 	
 	
+
+
+	
+	
+	
   render() {
-    return (
-      <div className="admin">
-       	<h1 className="adminH1">AdminPanel</h1>
-       	<a href="/" onClick={ (e) => this.signOut(e) }>Sign Out</a>
-      </div>
-    );
+	  
+
+	  
+    return ( <div className="admin">
+    	
+				 { this.state.loggedIn ?
+
+				 	<LoginForm updateStatus={this.changeValue} />
+
+				 :
+
+				  	<AdminPanel updateOut={this.changeValue} />
+
+				}
+    	
+    		</div>
+    	 );
   }
 }
 

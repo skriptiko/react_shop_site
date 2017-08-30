@@ -23,13 +23,30 @@ class Shop extends Component {
 	}
 	
 	componentDidMount() {
-			const rootRef = firebase.database().ref().child('items');
+		let arr = [],
+			obj,
+			rootRef = firebase.database().ref().child('items');
 
-			rootRef.on('value', snap => {
+		rootRef.on('value', snap => {
+			
+			if(snap.val() == null) {
 				this.setState({
-					items: snap.val()
+					items: []
 				});
+				return;
+			}
+				
+			obj = snap.val();
+			arr = [];
+			for (let val in obj) {
+				arr.push(obj[val]);
+			}
+
+			this.setState({
+				items: arr
 			});
+
+		});
 	}
 	
 	 searchActive = () => {
@@ -44,9 +61,18 @@ class Shop extends Component {
 	
 	singleProductContainer = (e, id) => {
 		e.preventDefault();
+
+		let arr = this.state.items,
+			singleProd;
+
+		for (let i = 0; i < arr.length; i++) {
+			if(arr[i].id === id) {
+				singleProd = arr[i];
+			}
+		}
 		
 		this.setState({
-				singleProduct: this.state.items[id],
+				singleProduct: singleProd,
 				singleProductView: !this.state.singleProductView
 			}); 
     }
@@ -55,17 +81,26 @@ class Shop extends Component {
 		e.preventDefault();
 		
 		this.setState({
-				cardProductView: !this.state.cardProductView
-			}); 
+			cardProductView: !this.state.cardProductView
+		}); 
     }
 	
 	addToCard = (e, id) => {
+
 		e.stopPropagation();
 		e.preventDefault();
 		
 		let idfey = this.state.productBy.length,
-			cardObj = this.state.items[id],
-			newCardObj = Object.assign({}, cardObj);
+			arrobj = this.state.items,
+			newCardObj,
+			cardObj;
+
+		for (let i = 0; i < arrobj.length; i++) {
+			if(arrobj[i].id === id) {
+				cardObj = arrobj[i];
+				newCardObj = Object.assign({}, cardObj);
+			}
+		}
 		
 		newCardObj.id = idfey;
 		
@@ -140,7 +175,7 @@ class Shop extends Component {
 	  let libraries = this.state.items,
 		  searchString = this.state.searchString.trim().toLowerCase(),
 		  shopping = this.state.productBy;
-//	  console.log();
+	
 	 
    
 	  if(searchString.length > 0) {
@@ -180,7 +215,7 @@ class Shop extends Component {
 		
 		};
 	  
-	  let $body = document.querySelector("body"),
+	  let 	$body = document.querySelector("body"),
 		  	$nav = document.querySelector(".nav");
 	  
 	  $body.style.overflowY = this.state.singleProductView ? "hidden" : "scroll";
@@ -198,7 +233,7 @@ class Shop extends Component {
     return (
 	<div className="shop">
 		
-		<div  className="card-product-container" style={this.state.cardProductView ? cardProductCss : styleOff} onClick={(e) => this.cardProductContainer(e)}>
+		<div  className="card-product-container" style={this.state.cardProductView ? cardProductCss : styleOff} >
 
 				<div className="card-product-box">
 						{shopping.map(function(qa, i) { 
@@ -219,13 +254,14 @@ class Shop extends Component {
 							<p>Total cost: {this.state.totalPrCost} $</p>
 							<a href="/" onClick={(e) => this.singleProduct(e)}>Сheckout</a>
 						</div>
-					</div>
+						<a className="card-product-off" href="/"  onClick={(e) => this.cardProductContainer(e)}><i className="fa fa-times" aria-hidden="true"></i></a>
+				</div>
 
 		</div>
 		
-		<div className="single-product-container" style={this.state.singleProductView ? singleProductCss : styleOff} onClick={(e) => this.singleProductContainer(e, this.state.singleProduct.id)}>
+		<div className="single-product-container" style={this.state.singleProductView ? singleProductCss : styleOff} >
 		
-					<div className="single-product-c" key={this.state.singleProduct.id} onClick={(e) => this.singleProductContainer(e, this.state.singleProduct.id)}>
+					<div className="single-product-c" key={this.state.singleProduct.id} >
 						<div className="single-product" onClick={(e) => this.singleProduct(e)}> 
 							<div className="single-product-img"> 
 								<img src={this.state.singleProduct.url} alt=""/>
@@ -235,10 +271,13 @@ class Shop extends Component {
 								<h3>{this.state.singleProduct.title}</h3>
 								<p className="product-price">{this.state.singleProduct.description}</p>
 								<p className="product-price">{this.state.singleProduct.price} $</p>
-								<a className="product-btn shop-flex"  onClick={(e) => this.addToCard(e, this.state.singleProduct.id)} href="/"><i className="fa fa-shopping-cart"></i><p className="action-text">Add to cart</p></a>
+								<a className="product-btn shop-flex"  onClick={(e) => this.addToCard(e, this.state.singleProduct.id)} href="/">
+									<i className="fa fa-shopping-cart"></i>
+									<p className="action-text">Add to cart</p>
+								</a>
 							</div>
 							<a  className="single-product-in-off" onClick={(e) => this.singleProductContainer(e, this.state.singleProduct.id)} href="/">
-									<i className="fa fa-times" aria-hidden="true"></i>
+								<i className="fa fa-times" aria-hidden="true"></i>
 							</a>
 		
 						</div>
@@ -254,12 +293,14 @@ class Shop extends Component {
 
 									return <div className="product-in shop-flex"  style={this.state.search ? productBoxNone : styleOff} key={i}>
 												<img src={qa.url} className="product-in-img" alt=""/>
-												<a className="product-in-off" href="/"  onClick={this.delFromCard.bind(this, i)}><i className="fa fa-times" aria-hidden="true"></i></a>
+												<a className="product-in-off" href="/"  onClick={this.delFromCard.bind(this, i)}>
+													<i className="fa fa-times" aria-hidden="true"></i>
+												</a>
 												<p>{ qa.sum === 1 ? "" : qa.sum }</p>
 											</div>
-						}, this)}
+					}, this)}
 
-					</div>
+			</div>
 				
 				
 				
@@ -271,7 +312,7 @@ class Shop extends Component {
 				<div className="input-container" style={this.state.search ? inputStyleActive : styleOff}>
 					<input 
 						className="search-input" 
-						 style={this.state.search ? styleOff : inputActive}
+						style={this.state.search ? styleOff : inputActive}
 						type="text" 
 						value={this.state.searchString} 
 						onChange={this.handleChange} />

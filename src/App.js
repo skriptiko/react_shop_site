@@ -33,7 +33,7 @@ constructor() {
     return (
 			<div className="app">
 				
-				<div role="nav" className="nav">
+				<div  className="nav">
 		
 					<a href="/" className={this.state.condition ? "trigger active" : "trigger"} onClick={this.linkIcon}>Menu 
 						<span></span>

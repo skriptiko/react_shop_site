@@ -6,7 +6,6 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import Admin from './components/Admin';
 import Shop from './components/Shop';
 import Home from './components/Home';
-import Login from './components/Login';
 import * as firebase from 'firebase';
 
 var config = {
@@ -20,6 +19,7 @@ var config = {
 firebase.initializeApp(config);
 
 
+
 ReactDOM.render((
   <Router history={browserHistory}>
 	
@@ -27,9 +27,8 @@ ReactDOM.render((
 		<IndexRoute component={Home} />
       	
       	<Route path="/shop" component={Shop}/>
-		<Route path="/login" component={Login}/>
 		<Route path="/admin" component={Admin}/>
     </Route>
 	
   </Router>
-), document.getElementById('root'))
+), document.getElementById('root'));
