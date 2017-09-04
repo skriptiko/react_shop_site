@@ -1,8 +1,7 @@
-Using ReactJS
-
+Using ReactJS<br>
 In command line:
 
--npm install;
+-npm install;<br>
 -npm start
 
 Admin page
