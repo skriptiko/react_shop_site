@@ -7,5 +7,5 @@ In command line:
 
 Admin page
 
-Login: admin@gmail.com /n
+Login: admin@gmail.com <br>
 Pass: adminadmin
