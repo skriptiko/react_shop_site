@@ -2,10 +2,10 @@ Using ReactJS
 
 In command line:
 
-npm install;
-npm start
+-npm install;
+-npm start
 
 Admin page
 
-Login: admin@gmail.com
+Login: admin@gmail.com /n
 Pass: adminadmin
